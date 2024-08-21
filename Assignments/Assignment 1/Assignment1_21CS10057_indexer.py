@@ -31,13 +31,13 @@ def preprocess_text(text):
 
     return tokens
 
-def extract_id_and_text(Folder_path):
+def extract_id_and_text(File_path):
     '''
     Function: Extract the document ID and text in the .W field. 
               Process the text to get tokens.
     Output:   Returns a dictionary of id(keys) and tokens
     '''
-    file_name = f"{Folder_path}/CISI.ALL"
+    file_name = File_path
     doc_dict = {}
     regex = re.compile(r'(\.I|\n\.W\n)((?:(?!\n\.(?:I|T|A|W|X)).)+)', re.DOTALL)
 
@@ -90,16 +90,16 @@ def get_inverted_index(doc_dict):
 if __name__ == "__main__":
     # Error check to ensure correct python command
     if len(sys.argv) != 2:
-        print("Error! Usage: python Assignment1_21CS10057_indexer.py <path to the CISI folder>")
+        print("Error! Usage: python Assignment1_21CS10057_indexer.py <path to the CISI.ALL file>")
         sys.exit(1)
 
-    # Path to the CISI folder
-    cisi_folder_path = sys.argv[1]
+    # Path to the CISI.ALL file
+    cisi_all_path = sys.argv[1]
 
     # Store cuurent directory path
     DIRNAME = os.path.dirname(__file__)
 
-    document_dict = extract_id_and_text(cisi_folder_path)
+    document_dict = extract_id_and_text(cisi_all_path)
     inv_dict = get_inverted_index(document_dict)
     
     pickle.dump(inv_dict, open(f"{DIRNAME}/model_queries_21CS10057.bin", "wb"))

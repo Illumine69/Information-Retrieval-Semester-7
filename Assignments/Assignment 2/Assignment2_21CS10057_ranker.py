@@ -280,3 +280,4 @@ if __name__ == "__main__":
                 top_docs = sorted_docs[:min(50, len(sorted_docs))]
                 top_docs_string = ' '.join([str(doc_id) for doc_id,_ in top_docs])
                 f.write(f"{query_id} : {top_docs_string}\n")
+
